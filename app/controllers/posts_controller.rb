@@ -68,7 +68,10 @@ class PostsController < ApplicationController
       redirect_to action: "index"
       return
     end
-    @posts = searcher.search.query(query).result_set.records
+    @posts = searcher.search.
+               query(query).
+               output_columns('_key,title,snippet_html(body)').
+               result_set.records
   end
 
   private
