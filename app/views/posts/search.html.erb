@@ -15,7 +15,7 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.title %></td>
-        <td><%= post.body %></td>
+        <td><%== post.snippet_html.join("<br>") %></td>
         <td><%= link_to 'Show', post_path(extract_id(post)) %></td>
         <td><%= link_to 'Edit', edit_post_path(extract_id(post)) %></td>
         <td><%= link_to 'Destroy', post_path(extract_id(post)), method: :delete, data: { confirm: 'Are you sure?' } %></td>
