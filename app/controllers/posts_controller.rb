@@ -70,8 +70,13 @@ class PostsController < ApplicationController
     end
     @posts = searcher.search.
                query(query).
-               output_columns('_key,title,snippet_html(body)').
-               result_set.records
+               output_columns('_key,title,snippet_html(body)')
+    [:match_columns, :sortby, :paginate].each do |param|
+      if params[param].present?
+        @posts = @posts.send(param, params[param])
+      end
+    end
+    @posts = @posts.result_set.records
   end
 
   private
