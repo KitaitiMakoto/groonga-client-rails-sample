@@ -1,4 +1,13 @@
 <%= form_tag(search_posts_path, method: "get") do %>
-  <input type=search name=q value="<%= params[:q] %>">
+  <dl>
+    <dt>query</dt>
+    <dd><input type=search name=q value="<%= params[:q] %>" required></dd>
+    <dt>match_columns</dt>
+    <dd><input type=input name=match_columns value="<%= params[:match_columns] %>"></dd>
+    <dt>sortby(comma separated)</dt>
+    <dd><input type=input name=sortby value="<%= params[:sortby] %>"></dd>
+    <dt>paginate</dt>
+    <dd><input type=number name=paginate min=0 step=1 value="<%= params[:paginate] %>"></dd>
+  </dl>
   <%= submit_tag("Search") %>
 <% end %>
